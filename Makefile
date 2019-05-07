@@ -2,7 +2,7 @@
 # Makefile for low-latency-preview
 #
 usage:
-	@echo "make [edit|build|run]"
+	@echo "make [edit|build|run|git]"
 
 edit e:
 	vi main.go
@@ -32,7 +32,7 @@ git g:
 git-update gu:
 	git add .gitignore go.* *.md Makefile handlers/ utils/ shell/
 	#git commit -m "initial commit"
-	#git remote remove go.mod sse.go
+	#git remote remove *.sh
 	#git commit -m "add examples"
 	git commit -m "update contents"
 	git push
