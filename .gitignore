@@ -1,6 +1,8 @@
 
 llserver
 
-www/
-logs/
+www
+www/*
+logs
+logs/*
 
