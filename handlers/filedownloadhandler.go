@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"../utils"
+	"github.com/streamlinevideo/low-latency-preview/utils"
 )
 
 type FileDownloadHandler struct {
@@ -71,7 +71,7 @@ func (l *FileDownloadHandler) serveDownload(w http.ResponseWriter, req *http.Req
 			if read_err != nil {
 				if read_err != io.EOF { // print out if read error
 					utils.GetDownloadLogger().Errorf("Failed to read file: %v \n", err)
-                                        panic(read_err)
+					panic(read_err)
 				}
 			}
 
@@ -94,7 +94,7 @@ func (l *FileDownloadHandler) serveDownload(w http.ResponseWriter, req *http.Req
 				// if read to end and uploading is done, time to close the downloading too
 				break
 			}
-                        utils.GetDownloadLogger().Debugf("Read to end, but uploading is not finished yet: %v \n", err)
+			utils.GetDownloadLogger().Debugf("Read to end, but uploading is not finished yet: %v \n", err)
 		}
 		time.Sleep(50 * time.Millisecond)
 	}

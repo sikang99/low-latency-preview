@@ -8,8 +8,8 @@ import (
 	"path"
 	"time"
 
-	"../utils"
 	"github.com/gorilla/mux"
+	"github.com/streamlinevideo/low-latency-preview/utils"
 )
 
 // UploadHandler handles for http upload
@@ -49,10 +49,9 @@ func (u *FileUploadHandler) serveHTTPImpl(curFolderPath string, curFilePath stri
 	// create, mostly for segment
 	// for segment, we will allow partial downloading during the uploading to save the time for player(this is what low latency meaning)
 	// So here uses Symlink as a signal to tell download handler whether the uploading is finished or not.
-        symlink := curFilePath + ".symlink"
-        os.Symlink(curFilePath, symlink)
-        utils.GetUploadLogger().Debugf("create symlink %s @ %v \n", symlink, time.Now().Format(time.RFC3339))
-
+	symlink := curFilePath + ".symlink"
+	os.Symlink(curFilePath, symlink)
+	utils.GetUploadLogger().Debugf("create symlink %s @ %v \n", symlink, time.Now().Format(time.RFC3339))
 
 	f, rerr := os.Create(curFilePath)
 	if rerr != nil {
